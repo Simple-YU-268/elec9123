@@ -1,0 +1,244 @@
+\documentclass[12pt,a4paper]{article}
+
+% Encoding & language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable,multirow}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{siunitx}
+
+\geometry{top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    captionpos=b
+}
+
+\title{\textbf{ELEC9123 Design Task B}\\[0.3em]
+\large Performance Analysis Verification via Monte Carlo Simulations}
+\author{YU \quad zID: z5615351}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report presents a Monte Carlo simulation study for a BPSK system operating over six wireless channel models: AWGN, Laplacian impulsive noise, Rayleigh fading with AWGN, Rician fading with AWGN, and randomly deployed users over Rayleigh/Rician fading channels. The simulated bit error rate (BER) and outage probability are compared with their analytical counterparts. Results confirm close agreement between simulation and theory, with the residual deviations explained by the finite number of Monte Carlo samples.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%=============================================================================
+\section{Introduction}
+%=============================================================================
+The design task aims to verify key performance metrics of a BPSK wireless communication system through Monte Carlo simulations. Monte Carlo methods generate a large number of random channel and noise realisations, evaluate the system response for each realisation, and then assemble empirical probabilities that can be compared with theoretical expressions.
+
+The report is organised as follows. Section~\ref{sec:parameters} lists the system parameters. Section~\ref{sec:laplace} describes the generation and verification of Laplacian noise. Sections~\ref{sec:ber} and~\ref{sec:outage} present the BER and outage probability methodologies, respectively. Section~\ref{sec:results} shows the numerical results and figures. Section~\ref{sec:discussion} discusses the observed deviations and the effect of sample size. Conclusions are drawn in Section~\ref{sec:conclusion}.
+
+%=============================================================================
+\section{System Parameters}\label{sec:parameters}
+%=============================================================================
+The default parameters used throughout the simulations are listed in Table~\ref{tab:parameters}.
+
+\begin{table}[H]
+\centering
+\caption{System Parameters}
+\label{tab:parameters}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+\midrule
+Outage threshold & $C$ & \SI{1.2}{bps/Hz} \\
+SNR range & $\gamma_b$ & $0$ to \SI{15}{dB}, step \SI{1}{dB} \\
+Cell radius & $R$ & \SI{3}{m} \\
+Path-loss exponent & $\nu$ & $2.2$ \\
+LOS magnitude & $h_d$ & $1$ \\
+Rician $K$-factor & $K$ & $5$ \\
+Noise variance & $N_0$ & $1$ \\
+Monte Carlo samples per SNR & $N$ & $10^6$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The outage SNR threshold is
+\begin{equation}
+    \gamma_{\text{th}} = 2^C - 1.
+\end{equation}
+
+%=============================================================================
+\section{Laplacian Random Variable Verification}\label{sec:laplace}
+%=============================================================================
+Impulsive noise is modelled as a real Laplacian random variable with variance $N_0$. Using the scale parameter $b=\sqrt{N_0/2}$, the PDF and CDF are
+\begin{align}
+    f_n(x) &= \frac{1}{2b}\exp\!\left(-\frac{|x|}{b}\right), \\
+    F_n(x) &=
+    \begin{cases}
+        \frac{1}{2}\exp\!\left(\frac{x}{b}\right), & x \le 0, \\[0.5em]
+        1 - \frac{1}{2}\exp\!\left(-\frac{x}{b}\right), & x > 0.
+    \end{cases}
+\end{align}
+
+Samples are generated via the inverse-CDF method:
+\begin{equation}
+    x = -b\,\text{sign}(u-0.5)\,\log\bigl(1 - 2|u-0.5|\bigr), \qquad u \sim \mathcal{U}(0,1).
+\end{equation}
+
+Figure~\ref{fig:laplace} compares the empirical PDF and CDF with the analytical expressions. The maximum absolute CDF error over the plotted range is approximately $9.3\times 10^{-4}$, confirming the correctness of the generator.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figs/figure_1.pdf}
+    \caption{Laplacian noise verification. Left: simulated histogram versus analytical PDF. Right: simulated empirical CDF versus analytical CDF.}
+    \label{fig:laplace}
+\end{figure}
+
+%=============================================================================
+\section{Bit Error Rate Simulation}\label{sec:ber}
+%=============================================================================
+For BPSK with coherent detection, the transmitted symbol is $x\in\{-1,+1\}$ with equal probability. The received signal in each channel is processed by the appropriate detector, and the empirical BER is the fraction of decoded bits that differ from the transmitted bits.
+
+%-----------------------------------------------------------------------------
+\subsection{Noise-only channels}
+%-----------------------------------------------------------------------------
+\paragraph{AWGN.} The received signal is $r = \sqrt{E_b}x + n$, where $n\sim\mathcal{CN}(0,N_0)$. The analytical BER is
+\begin{equation}
+    P_b^{\text{AWGN}} = \frac{1}{2}\operatorname{erfc}\!\left(\sqrt{\gamma_b}\right).
+\end{equation}
+
+\paragraph{Laplacian noise.} The received signal is $r = \sqrt{E_b}x + n$ with real Laplacian noise. The analytical BER is
+\begin{equation}
+    P_b^{\text{Lap}} = \frac{1}{2}\exp\!\left(-\sqrt{2\gamma_b}\right).
+\end{equation}
+
+%-----------------------------------------------------------------------------
+\subsection{Flat-fading channels}
+%-----------------------------------------------------------------------------
+\paragraph{Rayleigh fading.} The fading coefficient $h_s$ is complex Gaussian with $E\{|h_s|^2\}=1$. After maximal-ratio combining (single-tap equalisation), the analytical BER is
+\begin{equation}
+    P_b^{\text{Ray}} = \frac{1}{2}\left(1 - \sqrt{\frac{\gamma_b}{1+\gamma_b}}\right).
+\end{equation}
+
+\paragraph{Rician fading.} The channel is $h = \sqrt{\frac{K}{K+1}}h_d + \sqrt{\frac{1}{K+1}}h_s$, with $E\{|h|^2\}=1$. The BER can be written via the MGF of the instantaneous SNR:
+\begin{equation}
+    P_b^{\text{Ric}} =
+    \frac{1}{\pi}\int_{0}^{\pi/2}
+    \frac{(K+1)\sin^2\theta}{(K+1)\sin^2\theta + \gamma_b}
+    \exp\!\left(-\frac{K\gamma_b}{(K+1)\sin^2\theta + \gamma_b}\right)
+    \,d\theta.
+\end{equation}
+
+%-----------------------------------------------------------------------------
+\subsection{Randomly deployed users}
+%-----------------------------------------------------------------------------
+Users are uniformly distributed in a disk of radius $R$, so the distance PDF is $f_d(d)=2d/R^2$, $0\le d\le R$. Path loss is $d^{-\nu}$.
+
+\paragraph{Rayleigh fading with random deployment.} Conditional on distance $d$, the average SNR is $\gamma_b/d^\nu$ and
+\begin{equation}
+    P_b^{\text{RayRand}}(d) =
+    \frac{1}{2}\left(1 - \sqrt{\frac{\gamma_b}{d^\nu + \gamma_b}}\right).
+\end{equation}
+The unconditional BER is obtained by averaging over $f_d(d)$.
+
+\paragraph{Rician fading with random deployment.} Conditional on $d$, the Rician $K$-factor is unchanged because both LOS and scattered components are attenuated by the same path-loss factor. The conditional BER is $P_b^{\text{RicRand}}(d)=P_b^{\text{Ric}}(\gamma_b/d^\nu,K)$, averaged over $f_d(d)$.
+
+%=============================================================================
+\section{Outage Probability}\label{sec:outage}
+%=============================================================================
+Outage occurs when the instantaneous capacity falls below $C$:
+\begin{equation}
+    P_{\text{out}} = \Pr\left\{\log_2(1+\gamma) < C\right\}
+    = \Pr\left\{\gamma < \gamma_{\text{th}}\right\},
+    \qquad \gamma_{\text{th}} = 2^C - 1.
+\end{equation}
+
+For the four outage scenarios:
+\begin{align}
+    P_{\text{out}}^{\text{Ray}} &= 1 - \exp\!\left(-\frac{\gamma_{\text{th}}}{\gamma_b}\right), \\
+    P_{\text{out}}^{\text{Ric}} &= 1 - Q_1\!\left(\sqrt{2K},\sqrt{2(K+1)\frac{\gamma_{\text{th}}}{\gamma_b}}\right), \\
+    P_{\text{out}}^{\text{RayRand}} &=
+    1 - \frac{2}{\nu R^2}
+    \left(\frac{\gamma_{\text{th}}}{\gamma_b}\right)^{-2/\nu}
+    \gamma\!\left(\frac{2}{\nu}, \frac{\gamma_{\text{th}}R^\nu}{\gamma_b}\right), \\
+    P_{\text{out}}^{\text{RicRand}} &=
+    \frac{2}{R^2}\int_{0}^{R}
+    d\left[1 - Q_1\!\left(\sqrt{2K},\sqrt{2(K+1)\frac{\gamma_{\text{th}}d^\nu}{\gamma_b}}\right)\right]
+    \,dd,
+\end{align}
+where $\gamma(s,x)$ is the lower incomplete gamma function and $Q_1(\cdot,\cdot)$ is the Marcum $Q$-function.
+
+%=============================================================================
+\section{Results}\label{sec:results}
+%=============================================================================
+All simulations use $N=10^6$ samples per SNR point. Tables~\ref{tab:ber_dev} and~\ref{tab:outage_dev} list the percentage deviation between simulated and analytical results.
+
+\input{tables}
+
+Figures~\ref{fig:ber_noise}--\ref{fig:outage} present the BER and outage curves. The simulated curves follow the analytical curves closely across the SNR range.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/figure_2.pdf}
+    \caption{BER versus average SNR for noise-only channels (AWGN and Laplacian impulsive noise).}
+    \label{fig:ber_noise}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/figure_3.pdf}
+    \caption{BER versus average SNR for fading channels.}
+    \label{fig:ber_fading}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figs/figure_4.pdf}
+    \caption{Outage probability versus average SNR.}
+    \label{fig:outage}
+\end{figure}
+
+%=============================================================================
+\section{Discussion}\label{sec:discussion}
+%=============================================================================
+The outage probability deviations in Table~\ref{tab:outage_dev} are all below \SI{1}{\percent}, confirming the correctness of the outage simulation and analytical formulas.
+
+For BER, the fading-channel deviations are generally within a few percent. The largest deviations occur for the AWGN channel at high SNR (10--\SI{15}{dB}), where the theoretical BER falls below $10^{-6}$. With only $10^6$ samples, zero or very few bit errors are observed, so the empirical BER is dominated by statistical fluctuations. This is a Monte Carlo sample-size limitation rather than an implementation error.
+
+Table~\ref{tab:sample_conv} illustrates the effect of increasing $N$ for the AWGN channel at \SI{10}{dB}. As $N$ grows, the simulated BER approaches the analytical value, demonstrating that the Monte Carlo estimate converges with sample size.
+
+%=============================================================================
+\section{Conclusion}\label{sec:conclusion}
+%=============================================================================
+The MATLAB implementation successfully meets the requirements of ELEC9123 Design Task~B. Six wireless channel environments were simulated, the Laplacian random variable was verified, BER and outage probability were compared with analytical expressions, and the required figures were produced. The small deviations observed are consistent with the finite number of Monte Carlo samples and diminish as $N$ increases.
+
+%=============================================================================
+\section*{References}
+%=============================================================================
+\begin{enumerate}
+    \item A. Goldsmith, \textit{Wireless Communications}. Cambridge University Press, 2005.
+    \item E. W. Weisstein, ``Disk Point Picking,'' MathWorld. Available: \url{https://mathworld.wolfram.com/DiskPointPicking.html}
+    \item V. Meghdad, Lecture Notes on BER calculation. Available: \url{https://www.unilim.fr/pages_perso/vahid/notes/ber_awgn.pdf}
+    \item I-H. Wang, ``Capacity of Wireless Channels,'' Lecture 4, Slides 39--40.
+    \item S. Kashyap, E. Bj\"ornson and E. G. Larsson, ``On the Feasibility of Wireless Energy Transfer Using Massive Antenna Arrays,'' \textit{IEEE Trans. Wireless Commun.}, vol.~15, no.~5, pp.~3466--3480, May 2016.
+\end{enumerate}
+
+\end{document}

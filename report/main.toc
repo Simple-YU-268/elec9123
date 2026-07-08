@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}System Parameters}{2}{section.2}%
+\contentsline {section}{\numberline {3}Laplacian Random Variable Verification}{2}{section.3}%
+\contentsline {section}{\numberline {4}Bit Error Rate Simulation}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Noise-only channels}{3}{subsection.4.1}%
+\contentsline {paragraph}{AWGN.}{3}{section*.4}%
+\contentsline {paragraph}{Laplacian noise.}{3}{section*.5}%
+\contentsline {subsection}{\numberline {4.2}Flat-fading channels}{3}{subsection.4.2}%
+\contentsline {paragraph}{Rayleigh fading.}{3}{section*.6}%
+\contentsline {paragraph}{Rician fading.}{4}{section*.7}%
+\contentsline {subsection}{\numberline {4.3}Randomly deployed users}{4}{subsection.4.3}%
+\contentsline {paragraph}{Rayleigh fading with random deployment.}{4}{section*.8}%
+\contentsline {paragraph}{Rician fading with random deployment.}{4}{section*.9}%
+\contentsline {section}{\numberline {5}Outage Probability}{4}{section.5}%
+\contentsline {section}{\numberline {6}Results}{4}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{8}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}%

@@ -1,0 +1,541 @@
+                           ELEC9123: Design Task B
+                          (Wireless Communications)
+Performance Analysis Verification via Monte Carlo Simulations
+
+                                                       Term T2, 2025
+
+1 Background
+
+This computer simulation-based design project is aimed at understanding the various performance metrics in wire-
+less communication channels experiencing fading and interference due to noise while incorporating the random
+locations of the users. Further, to verify these performance metrics, Monte Carlo simulations need to be performed
+for different system settings. You will use MATLAB or the mentioned computer simulations. Below, after briefly
+discussing the mentioned simulation settings, we discuss the adopted wireless channel models.
+
+1.1 Monte Carlo Simulations
+
+Monte Carlo simulation is a technique used to investigate how a model responds to randomly generated input and
+involves the following three key steps:
+
+    · Firstly, generate N samples (generally very high in the order of millions) at random.
+    · For each of these N inputs, run simulations based on a computerised model of the system being analysed.
+    · Assemble and evaluate the simulated outputs and compare them against the analytical or theoretical results.
+
+       Some examples of assembling operations include the probability distribution, mean, maximum, or minimum
+       of the output samples.
+
+1.2 Wireless Channel Models
+
+We have considered the following six wireless channel models involving:
+    · Additive White Gaussian Noise (AWGN) only,
+    · Laplace distributed Impulsive Noise only,
+    · Rayleigh fading and AWGN,
+    · Rician fading and AWGN,
+    · Randomly deployed users over Rician Fading and AWGN channels.
+    · Randomly deployed users over Rayleigh Fading and AWGN channels.
+
+1.3 Objectives
+
+This task will help with simulating the random variable following different distributions, along with the imple-
+mentation of various wireless communication models, including noise, fading, and propagation losses. Also, the
+transformation of random variables will be investigated along with the key concepts like bit error rate (BER) and
+outage probability. The simulation-based verification of these two metrics under varying communication models
+involves a very different methodology to be studied.
+In the next section, we discuss the analytical results for the considered performance metrics for the binary phase-shift
+keying (BPSK) system.
+
+2 Performance Analysis for BPSK System
+
+We have considered the following two performance metrics:
+    · BER,
+    · Outage probability,
+
+Before presenting the analytical expressions for these two metrics under different channel models, we discuss some
+distribution expressions that these metrics will use.
+
+                                                                            1
+2.1 Probability Distribution Models
+
+As discussed here, we have six random distributions to consider one by one.
+
+2.1.1 Complex Gaussian Noise
+
+AWGN is modelled as a zero-mean circularly symmetric complex Gaussian with a finite variance that represents the
+underlying noise power as denoted by N0. Here, circularly symmetric implies that both real and imaginary terms
+have zero mean and equally share the variance between them.
+
+2.1.2 Laplace Distribution for Impulsive Noise
+
+Additive impulse noise can be modelled using a Laplacian probability density function (PDF) as defined below
+
+                                               fn  (x)    =   1 e-             2     |x|,       -  x                                                     (1)
+                                                               2 N0           N0
+
+where N0 is the variance of the noise, and its cumulative distribution function (CDF) is defined as follows
+
+                                           Fn  (x)  =        (n      x)  =           e       2  x,           x  0,
+                                                                              1      -      N0               x>0.
+
+                                                        Pr                        2         e-       2   x,                                              (2)
+                                                                                                    N0
+                                                                              1          1
+                                                                                         2
+
+2.1.3 Rayleigh Fading
+
+We can denote the wireless channel power gain a, including both the square of the magnitude of the fading coefficient,
+
+which is exponentially distributed owing to Rayleigh fading, and the path loss in terms of distance d = 1m and
+
+path loss exponent . So, the probability density function (PDF) far (x) of ar for unit distance separation between
+transmitter and receiver, i.e., d = 1m, is given by
+
+                                                          far  (x)   =    1   e-   1  x  ,      x  0.                                                    (3)
+                                                                                  b
+
+                                                                         b
+
+where  signal-to-noise-ratio     (SNR)     ar      |hs|2  E{|x|2}    ,  with  E   {ar}      =      b  denoting    the  mean  of  ar.  Here,  with  |hs|  being
+
+                                                              N0
+
+Rayleigh distributed and E |x|2 denoting power of the transmitted signal x, ar and |hs|2 both follow exponential
+
+distribution. Also, we assume that E |hs|2                        =  1 and    E{|x|2}           =   b.       Furthermore, hs is a zero-mean circularly
+
+                                                                                  N0
+
+symmetric complex Gaussian distributed random variable with unit variance. More details on this fading and path
+
+loss can be found in [R1].
+
+2.1.4 Rician Fading
+
+For the scenarios with a strong line of sight (LoS) component as compared to the other scattered components, the
+
+amplitude of the channel gain coefficient is characterized by a Rician distribution and is described by a parameter
+
+called Rice factor K, which is the ratio between the power in the direct LoS path and the power in the other, scattered
+
+paths. We can define this underlying channel gain coefficient h whose magnitude or amplitude |h| follows Rician
+
+distribution as follows
+
+                                                        h=             K   1  hd  +         K   1        hs                                              (4)
+                                                                     K+                         +1
+
+where hd represents a unit magnitude deterministic complex scalar containing the LoS and the specular components
+of the channel, and hs denotes the scattered components of the channel, which is a zero-mean unit variance circular
+symmetric complex Gaussian random variable [R5, Section II]. Here again, we can denote the wireless channel power
+gain |h|2 including both the square of the magnitude of the fading coefficient as, which is noncentral-2-squared
+
+distributed with two degrees of freedom owing to Rician fading and the path loss in terms of distance d = 1m and
+
+path loss exponent . So, the probability density function (PDF) faR (x) of the SNR aR for unit distance separation
+between transmitter and receiver, i.e., d = 1m, is given by
+
+                                 faR  (x)  =  (K + 1)     e-   1  2(K+1)x  +2K       I0            4K(K + 1)x , x  0.                                    (5)
+                                                 b             2      b                                  b
+
+where  aR    |h|2  E{|x|2  }  ,  with  E {aR}    =  b     denoting the           mean of            aR.  Here,  with   |h| being Rician distributed      and
+
+                       N0
+
+E |x|2 denoting power of the transmitted signal x, aR and |h|2 both follow noncentral-2-squared distribution
+
+with two degrees of freedom. Also, we assume that E |h|2                                 =      1  and   E{|x|2}  =  b.  Lastly,  it  may be  recalled   that
+
+                                                                                                             N0
+
+Rician fading for K = 0 reduces to Rayleigh fading.
+
+                                                                              2
+2.1.5 Uniform Deployment of Users
+
+Considering that the transmitter is placed at the center of a circular field of radius R meters (m) and the users (or
+
+receivers) are uniformly deployed inside it, the PDF fd (x) of the distance d between this center-place transmitter and
+
+a randomly deployed user is given by
+
+                                                       fd  (x)  =   2x    ,  0  x  R.                                                     (6)
+                                                                    R2
+
+More details on this distribution can be found in [R2].
+
+2.1.6 Combined Effect of Fading and Random Deployment
+
+Noting  that  ar  represents  the  overall  channel    power      gain,      we  first  use  the  following  PDF  of  d-  to  eventually  obtain
+              d
+the desired PDF f ar (x) for randomly deployed users over Rayleigh fading as mentioned after it.
+                  d
+
+                                   fd-    (x)  =   2x-    1    x-   1     =  2x-  +2    ,    R-  x  .                                     (7)
+                                                                                    
+
+                                                      R2        x            R2
+
+                              f ar (x) =        1  fd- (y) far            x  dy
+                                d           R-  y                         y
+
+                                                   2              +2                 + 2 , Rx
+                                            2 (b)                                      b
+                                       =                                     -                         , x  0.                            (8)
+                                            R2     +2
+                                                x    
+
+where  (s, x) =      ts-1e-t  dt   is  upper    incomplete          gamma        function    with    (s)  =   (s, 0)  being   ordinary  gamma
+function.         x
+
+Likewise, the PDF of the overall channel power gain for randomly deployed users over the Rayleigh fading scenario
+is as follows:
+
+                                               f aR (x) =              1  fd- (y) faR        x    dy.                                     (9)
+                                                 d              R-     y                     y
+
+2.2 Bit Error Rate (BER)
+
+BER for BPSK transmission is studied for all three wireless channel models, and the underlying expressions are
+reproduced below. For more details on the derivation, refer to [R3].
+
+2.2.1 AWGN only
+
+                                                             PbA  =    1                                                                  (10)
+                                                                       2  erfc ( b) .
+
+2.2.2 Laplacian Impulse Noise only
+
+                                                               PbL   =    1                                                               (11)
+                                                                          2
+                                                                             e- 2b .
+
+2.2.3 Rayleigh fading and AWGN
+
+                                                PbAFr =         1                       far (x) dx
+                                                                     erfc      x
+                                                               02
+
+                                                       =1 1-                   b        .                                                 (12)
+                                                          2                  1 + b
+
+2.2.4 Rician fading and AWGN
+
+                                               PbAFR =          1                   faR (x) dx.                                           (13)
+                                                                     erfc      x
+
+                                                               02
+
+2.2.5 Randomly deployed users over Rayleigh fading and AWGN channels
+
+                                               PbAFr R =         1 erfc             f ar (x) dx.                                          (14)
+                                                               02              x      d
+
+                                                                          3
+2.2.6 Randomly deployed users over Rician fading and AWGN channels
+
+                                            PbAFR R =     1                   f aR (x) dx.                           (15)
+                                                               erfc        x    d
+
+                                                         02
+
+2.3 Outage Probability
+
+It represents that the probability of the underlying rate is less than an acceptable threshold of C bps/Hz. For more
+details, refer to [R4].
+
+2.3.1 Rayleigh fading
+
+                     PoFur t = Pr  log2     1 + b|hs|2      C        = Pr     |hs|2  2C - 1   =  1  -  e-  2C -1  .  (16)
+                                                                                           b                 b
+
+Here, we assumed d = 1 m for simplicity.
+
+2.3.2 Rician fading
+
+                       PoFuRt = Pr          log2      1 + b|h|2       C       = Pr  |h|2  2C - 1
+                                                                                                b
+
+                                                                                    
+
+                                                               2 (K + 1) 2C - 1  .                                   (17)
+                                   = 1 - Q1  2K,                              b
+
+Here, Q1 (·, ·) is Marcum Q-function and we assumed d = 1 m for simplicity.
+
+2.3.3 Randomly deployed users over Rayleigh fading channels
+
+                       PoFur Rt =Pr         log2      1  +  b  |hs|2     C    = Pr    ar     2C - 1
+                                                                d                     d
+
+                                            2C -1
+
+                                   =               f ar (x) dx.                                                      (18)
+                                                   d
+                                         0
+
+2.3.4 Randomly deployed users over Rician fading channels
+
+                       PoFuRtR =Pr          log2      1  +  b  |h|2      C    = Pr    aR     2C - 1
+                                                               d                      d
+
+                                            2C -1
+
+                                   =               f aR (x) dx.                                                      (19)
+
+                                         0         d
+
+3 Design Task Requirements
+
+Considering the default system parameters as C = 1.2 bps/Hz, b varying between 0 dB and 15dB in the steps of 1
+dB, R = 3 m,  = 2.2, hd = 1, K = 5, N0 = 1, and E |hs|2 = 1, perform the following five tasks.
+
+   1. Generate the following six simulation environments
+          · Laplacian Noise channels
+          · AWGN channels
+          · Rayleigh fading and AWGN channels
+          · Rician fading and AWGN channels
+          · Randomly deployed users over Rayleigh fading and AWGN channels
+          · Randomly deployed users over Rician fading and AWGN channels
+
+   2. Verify the generated Laplacian random variables by comparing the underlying simulated PDF and CDF with
+       the corresponding analytical ones
+
+                                                                      4
+   3. Obtain the simulated results for the following performance metrics:
+          · BER in all six simulated environments
+          · Outage probability over the four simulated environments as grouped under the following two categories
+                ­ Rayleigh fading channels with both unit distance (known, d = 1) and randomly deployed users in a
+                   circular region of radius R,
+                ­ Rician fading channels with both unit distance (known, d = 1) and randomly deployed users in a
+                   circular region of radius R.
+
+   4. Compare the Simulated Results with Analytical Solutions. Make sure that the estimates from the simulation
+       function are close to the exact analytical values. Further, the percentage deviation of the simulated results from
+       the ones obtained using the closed-form expressions is obtained. Also, check if this percentage error or gap can
+       be reduced by increasing the number of random samples generated.
+
+   5. Generate the following three plots:
+          · BER (Pb) vs SNR (b) for environments affected only by noise, containing four curves: analytical and
+              simulated results for BER in wireless channel settings impacted by AWGN and Laplacian noise
+          · BER (Pb) vs SNR (b) containing eight curves: analytical and simulated results for BER in four wireless
+              channel settings
+                ­ Rayleigh fading and AWGN,
+                ­ Rician fading and AWGN,
+                ­ Randomly deployed users over Rician Fading and AWGN channels.
+                ­ Randomly deployed users over Rayleigh Fading and AWGN channels
+          · Outage probability (Pout) vs SNR (b) containing eight curves: analytical and simulated results in four
+              wireless channel settings
+                ­ Rayleigh fading
+                ­ Rician fading
+                ­ Randomly deployed users over Rician Fading channels.
+                ­ Randomly deployed users over Rayleigh Fading channels
+
+4 TLT Assessment Structure
+
+To pass the course, you need to solve this task according to the Tiered Learning taxonomy (TLT) guidelines and
+present it to an instructor/demo at one of the lab exercises that offer an examination. If you choose to do designs
+above Level 2, you should follow them in a sequential order. For instance, you should finish Level 2 before trying
+Level 3 and so on. The highest score you can get is based on the level you choose. Explicitly following the TLT,
+this task is designed to provide an increasing complexity from Pass (Level 2) to High Distinction (Level 5) levels, as
+shown below:
+
+    · Level 2 (Pass): If you correctly implement the first two simulation environments (Laplacian Noise and AWGN
+       channels) in terms of the underlying BER simulation and analyses, along with verifying the generated Lapla-
+       cian random variables by comparing the simulated PDF and CDF with the corresponding analytical ones, the
+       maximum mark you can achieve is 64.
+
+    · Level 3 (Credit): If you complete the correct implementation of Level 2 along with that of Rayleigh fading and
+       AWGN channels and conduct the verification of outage probability and BER analyses, the maximum mark you
+       can achieve is 74.
+
+    · Level 4 (Distinction): If you complete the correct implementation of Level 3 and randomly deploy users over
+       Rayleigh fading and AWGN channels, along with the verification of the underlying outage probability and BER
+       analyses, the maximum mark you can achieve is 84.
+
+    · Level 5 (High Distinction): If you complete the correct implementation of Level 4 and randomly deploy users
+       over the Rician fading and AWGN channels, along with the verification of the underlying outage probability
+       and BER analyses, the maximum mark you can achieve is 100.
+
+                                                                            5
+5 Useful Facts
+
+· Random number for any distribution can be generated using the rand function in MATLAB for generating the
+
+   uniform random variable between 0 and 1. The trick is based on the fact that the cumulative distribution
+
+   function (CDF) also lies in the range between 0 and 1. The formula for generating the random variable x having
+   the CDF F is given by x = F-1 (rand).
+
+·  For  example  with  CDF   F(x)  =  1 - e-x    of  exponentially  distributed    random     variable     having  mean     1  ,  the
+                                                                                                                            
+                                                                                                           1
+   formula  for  generating  the  exponentially  distributed  random  variable  x  is  given  by  x  =  -     log  (rand).
+
+· The number of random samples to be generated for simulation should be sufficiently large to ensure that at
+   least about 106 are considered for obtaining the simulated results, which are in a close match to those obtained
+
+   analytically. The improvement in accuracy can be observed by increasing the number of random samples to
+   107.
+
+6 Reference Materials
+
+Though most of the required details that should be sufficient for completing this project are mentioned in this docu-
+ment itself, for further details, interested students are referred to read the following:
+
+[R1] A. Goldsmith, Chapters 2 and 3 of Wireless Communications. Cambridge University Press. 2005.
+[R2] Eric W. Weisstein, Disk Point Picking. From MathWorld­A Wolfram Web Resource.
+Weblink: https://mathworld.wolfram.com/DiskPointPicking.html
+[R3] V. Meghdad, Lecture Notes on BER calculation. Weblink: https://www.unilim.fr/pages_perso/vahid/
+notes/ber_awgn.pdf
+
+[R4] I-H. Wang Slides 39 and 40 of Lecture 4 in Capacity of Wireless Channels. Weblink: https://unsw-my.sharepoint.
+com/:b:/g/personal/z3528746_ad_unsw_edu_au/ESsYyxLfUAJGn-whZKc7V7YBeyO8_6YLswqDXxEVHSQFfg?
+e=iGO0xk
+
+[R5] S. Kashyap, E. Björnson and E. G. Larsson, "On the Feasibility of Wireless Energy Transfer Using Massive An-
+tenna Arrays," IEEE Transactions on Wireless Communications, vol. 15, no. 5, pp. 3466-3480, May 2016
+
+7 Attendance Requirements
+
+    · Student attendance in each laboratory session (Wednesday and Friday) will be recorded.
+    · In order to receive a grade for this design task, it is mandatory to attend all required lectures/labs, including
+
+       the lab assessments.
+    · To ensure consistency and fairness among different simulation and hardware-focused students, all the lab-
+
+       based questions will be answered or addressed only during the two three-hour weekly lab sessions.
+
+8 Design Journal Submission
+
+    · It is mandatory to maintain a journal or report describing your design process, implementation code, and
+       results, which must be documented via an MS Word or .pdf file.
+
+    · The design journal must include a working and well-commented MATLAB file that meets the task requirements.
+       Submit this file via the Moodle Design Task X submission link, where X is 1, 2, or 3 depending on whether
+       you chose this task as your first, second, or third design task.
+
+    · Please ensure that the MATLAB simulation file is formatted according to the requirements listed in Section 3.
+
+    · Your journal should already have all the subparts required to showcase the necessary functionality, along with
+       detailed comments explaining all the steps. You may be penalised if significant additions or changes are re-
+       quired to show functionality or demonstration.
+
+    · The simulation file must be saved as a `.m' file (MATLAB file). The name of this file must be:
+       zID_LastName_DTB_2025.m. Here if any student has written their code in multiple MALTAB files, then they
+       can compress all the .m together in a single zip folder while exactly mentioning which file to run and what does
+       each .m file is doing by adding a README text file explaining the role of each .m file. The name of this zip
+       folder, in this case, must be: zID_LastName_DTB_2025.zip
+
+                                                     6
+· Your simulation file should already have all the subparts required to showcase the necessary functionality,
+   along with detailed comments explaining all the steps. You may be penalised if significant additions or changes
+   are required to show functionality as per the mentioned requirements.
+
+· The brief portable document format (.pdf) report summarising the outcomes of this Design task and your steps
+   in obtaining them must be saved as a `.pdf' file (readable text file). The name of this file must be:
+   zID_LastName_DTB_2025.pdf
+
+9 Design Task Schedule and Assessment Timeline
+
+    · Each design task must be completed over a span of six lab sessions. Term 2 is structured to accommodate three
+       design tasks to be selected by each student out of the 7 available options, with the following schedule:
+           ­ Task 1: Week 1 Wednesday lab session to Week 3 Friday lab session,
+           ­ Task 2: Week 4 Friday lab session to Week 7 Wednesday lab session,
+           ­ Task 3: Week 8 Wednesday lab session to Week 10 Friday lab session.
+
+    · Each task has a specific assessment session and submission deadline:
+           ­ If this task is completed as Task 1:
+                 * Assessment: Wednesday lab session of Week 4,
+                 * Deadline: 11:59 PM, Tuesday, June 24, 2025.
+           ­ If this task is completed as Task 2:
+                 * Assessment: Friday lab session of Week 7,
+                 * Deadline: 11:59 PM, Thursday, July 17, 2025.
+           ­ If this task is completed as Task 3:
+                 * Assessment: Wednesday lab session of Week 11,
+                 * Deadline: 11:59 PM, Tuesday, August 12, 2025.
+
+10 Assessment Criteria and Marking Rubric
+
+· The assessment breakdown for each design task, showing different components involved, is shown in Table 1.
+
+Table 1: The assessment breakdown for Design Task B
+
+Deliverable                                    Percentage of Assignment Grade
+
+Demonstration of Correct Working Design        20%
+
+Explanation of the Implementation and Results  40%
+
+Ability to Answer Questions                    20%
+
+Design Journal or Notebook                     20%
+
+· The Correct Working Design component, worth 20%, requires that all objectives are accurately met according
+   to the selected level, as described in Section 4.
+
+· The Explanation of Implementation and Results is evaluated based on the following four aspects:
+
+      ­ Clarity and explanation of plots - how well the plots are presented and interpreted.
+
+      ­ Code efficiency and commenting - the quality, readability, and documentation of the code.
+
+      ­ Working code and its explanation - whether the code runs correctly and is clearly explained.
+
+      ­ Explanation of Results - how well the outcomes are analysed and related to the design objectives.
+
+· The "Ability to Answer Questions" component is based on the quality of responses to the two to four questions
+   based on the design task.
+
+· The Design Journal component is evaluated based on four equally weighted areas. First, students must provide
+   a brief problem description that clearly outlines the design task. Second, they should present their understand-
+   ing and logic, explaining their approach and reasoning in a structured and coherent manner. Third, the journal
+   should include a demonstration of results, showcasing the outcomes of their design work with appropriate
+   interpretation. Finally, students must include project management details, such as weekly progress updates, a
+   declaration of any AI tools used, and proper referencing of all sources.
+
+                             7
+· Overall, during the assessment, students will need to demonstrate the functionality of the MATLAB code, explain
+   their design journal and design to the lab demonstrator, and answer any questions they may have about their
+   design.
+
+· All design tasks in this course must be completed individually. Copying from others is not permitted and may
+   result in a failing grade, reinforcing the importance of academic integrity.
+
+· Please note that design tasks must be submitted by the set deadline, and extensions will not be granted, except
+   in cases of approved special consideration, which may allow students to redo the task during Weeks 11 and 12.
+
+· Passing Requirement and Hurdle: To pass this course, you must:
+      ­ Achieve an overall course mark of 50% or higher, where this overall mark is calculated as follows:
+            * 30% from each of the three design tasks (totaling 90%),
+            * 10% from the lab exam, which will be conducted during the Friday lab session of Week 11, and
+      ­ Pass at least two out of your three design tasks. This means you can fail only one design task.
+
+· Redo Opportunity: If you fail a design task, you will have a chance to redo it during Weeks 11 and 12.
+      ­ Lab sessions for redoing tasks will run from 9:00 AM to 3:00 PM on:
+            * 6-hour lab session on Wednesday of Week 11
+            * 6-hour lab sessions on Wednesday and Friday of Week 12
+      ­ If your resubmitted task meets the requirements for a satisfactory grade, you will receive a mark of 50%
+          for that task.
+      ­ The grading and assessment will be conducted on the Friday lab session of Week 12 after the student
+          submits their task during the same session.
+      ­ Please be aware that you are allowed to redo ONLY one design task.
+
+· Supplementary Lab Sessions: The above-mentioned three 6-hour lab sessions in Weeks 11 and 12 can also be
+   used as make-up sessions for students who missed earlier labs due to approved special consideration. In such
+   cases, students will be assessed normally and will receive their actual earned mark, rather than the fixed 50%
+   awarded for task redos. Please be aware that students are strictly permitted to complete only one design task
+   during the supplementary lab sessions in Weeks 11 and 12. No exceptions will be made beyond this single
+   opportunity.
+
+· If needed, students may be given access to open lab sessions to work outside regular lab hours. However,
+   lecturer and demonstrator support will only be available during the two scheduled weekly lab sessions.
+
+· Formal feedback will be provided well within two weeks of the relevant submission date through Moodle,
+   followed by a brief discussion during the lab session.
+
+· Note: Use of AI tools (such as ChatGPT or Copilot) for your learning in this course is allowed, but you are
+   responsible for everything you produce - designs, reports, graphs, etc. (keeping in mind that the output from
+   AI tools can be incorrect). Any use of AI tools must be declared.
+
+                                                                        8
+
