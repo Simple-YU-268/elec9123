@@ -1,17 +1,30 @@
-\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
-\contentsline {section}{\numberline {2}System Parameters}{2}{section.2}%
-\contentsline {section}{\numberline {3}Laplacian Random Variable Verification}{2}{section.3}%
-\contentsline {section}{\numberline {4}Bit Error Rate Simulation}{3}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Noise-only channels}{3}{subsection.4.1}%
-\contentsline {paragraph}{AWGN.}{3}{section*.4}%
-\contentsline {paragraph}{Laplacian noise.}{3}{section*.5}%
-\contentsline {subsection}{\numberline {4.2}Flat-fading channels}{3}{subsection.4.2}%
-\contentsline {paragraph}{Rayleigh fading.}{3}{section*.6}%
-\contentsline {paragraph}{Rician fading.}{4}{section*.7}%
-\contentsline {subsection}{\numberline {4.3}Randomly deployed users}{4}{subsection.4.3}%
-\contentsline {paragraph}{Rayleigh fading with random deployment.}{4}{section*.8}%
-\contentsline {paragraph}{Rician fading with random deployment.}{4}{section*.9}%
-\contentsline {section}{\numberline {5}Outage Probability}{4}{section.5}%
-\contentsline {section}{\numberline {6}Results}{4}{section.6}%
-\contentsline {section}{\numberline {7}Discussion}{8}{section.7}%
-\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}%
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}System Parameters}{3}{section.2}%
+\contentsline {section}{\numberline {3}Laplacian Random Variable Verification}{3}{section.3}%
+\contentsline {section}{\numberline {4}Bit Error Rate Simulation}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Noise-only channels}{4}{subsection.4.1}%
+\contentsline {paragraph}{AWGN.}{4}{section*.4}%
+\contentsline {paragraph}{Laplacian noise.}{4}{section*.5}%
+\contentsline {subsection}{\numberline {4.2}Flat-fading channels}{4}{subsection.4.2}%
+\contentsline {paragraph}{Rayleigh fading.}{4}{section*.6}%
+\contentsline {paragraph}{Rician fading.}{5}{section*.7}%
+\contentsline {subsection}{\numberline {4.3}Randomly deployed users}{5}{subsection.4.3}%
+\contentsline {paragraph}{Rayleigh fading with random deployment.}{5}{section*.8}%
+\contentsline {paragraph}{Rician fading with random deployment.}{5}{section*.9}%
+\contentsline {section}{\numberline {5}Outage Probability}{5}{section.5}%
+\contentsline {section}{\numberline {6}Results}{5}{section.6}%
+\contentsline {section}{\numberline {7}Discussion}{9}{section.7}%
+\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}%
+\contentsline {section}{\numberline {A}Laplacian Random Variable: CDF Derivation and Inverse-CDF Sampling}{10}{appendix.A}%
+\contentsline {section}{\numberline {B}BER Derivation for the Four Fading\/Noise Channels}{11}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}AWGN channel}{11}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Laplacian impulsive-noise channel}{11}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}Rayleigh fading channel}{11}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Rician fading channel}{12}{subsection.B.4}%
+\contentsline {section}{\numberline {C}Random User Deployment: Distance Distribution and Averaging}{12}{appendix.C}%
+\contentsline {section}{\numberline {D}Outage Probability Derivation}{13}{appendix.D}%
+\contentsline {subsection}{\numberline {D.1}Rayleigh fading (fixed distance $d=1$)}{13}{subsection.D.1}%
+\contentsline {subsection}{\numberline {D.2}Rician fading (fixed distance $d=1$)}{13}{subsection.D.2}%
+\contentsline {subsection}{\numberline {D.3}Randomly deployed users over Rayleigh fading}{13}{subsection.D.3}%
+\contentsline {subsection}{\numberline {D.4}Randomly deployed users over Rician fading}{14}{subsection.D.4}%
+\contentsline {section}{\numberline {E}Monte Carlo Sample-Size Limitations at High SNR}{14}{appendix.E}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.6)  16 JUL 2026 23:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.10.6)  16 JUL 2026 23:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -472,50 +472,59 @@ Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \backup@length=\skip65
 \ar@cellbox=\box72
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 24.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip66
+\enit@outerparindent=\dimen199
+\enit@toks=\toks37
+\enit@inbox=\box73
+\enit@count@id=\count332
+\enitdp@description=\count333
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 25.
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 40.
+h' as default language. on input line 41.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count332
-\l__pdf_internal_box=\box73
+\l__color_backend_stack_int=\count334
+\l__pdf_internal_box=\box74
 )
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
-LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 
 (/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count333
-\scratchdimen=\dimen199
-\scratchbox=\box74
-\nofMPsegments=\count334
-\nofMParguments=\count335
-\everyMPshowfont=\toks37
-\MPscratchCnt=\count336
-\MPscratchDim=\dimen256
-\MPnumerator=\count337
-\makeMPintoPDFobject=\count338
-\everyMPtoPDFconversion=\toks38
+\scratchcounter=\count335
+\scratchdimen=\dimen256
+\scratchbox=\box75
+\nofMPsegments=\count336
+\nofMParguments=\count337
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count338
+\MPscratchDim=\dimen257
+\MPnumerator=\count339
+\makeMPintoPDFobject=\count340
+\everyMPtoPDFconversion=\toks39
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -559,7 +568,7 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 40.
+Package hyperref Info: Link coloring ON on input line 41.
 (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
@@ -568,7 +577,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count339
+\c@lstlisting=\count341
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-d
 ictionary-english.trsl
@@ -576,19 +585,25 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 40.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+or `english'. on input line 41.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (./main.toc
+)
+Overfull \hbox (6.52654pt too wide) in paragraph at lines 46--47
+[]\T1/cmr/m/n/10.95 This de-sign jour-nal doc-u-ments the com-plete work-flow o
+f ELEC9123 De-sign Task B:
+ []
+
+(./main.toc
 
 [1
 
@@ -600,93 +615,98 @@ al/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}])
 
 
 [2]
-<figs/figure_1.pdf, id=153, 570.13pt x 291.0875pt>
+
+[3]
+<figs/figure_1.pdf, id=173, 570.13pt x 291.0875pt>
 File: figs/figure_1.pdf Graphic file (type pdf)
 <use figs/figure_1.pdf>
-Package pdftex.def Info: figs/figure_1.pdf  used on input line 110.
+Package pdftex.def Info: figs/figure_1.pdf  used on input line 133.
 (pdftex.def)             Requested size: 432.48051pt x 220.80682pt.
 
 
-[3]
+[4]
 
-[4 <./figs/figure_1.pdf>] (./tables.tex)
-<figs/figure_2.pdf, id=218, 509.905pt x 416.55624pt>
-File: figs/figure_2.pdf Graphic file (type pdf)
-<use figs/figure_2.pdf>
-Package pdftex.def Info: figs/figure_2.pdf  used on input line 200.
-(pdftex.def)             Requested size: 386.96027pt x 316.13475pt.
-
-
-[5]
+[5 <./figs/figure_1.pdf>]
 
 [6]
-<figs/figure_3.pdf, id=239, 509.905pt x 416.55624pt>
-File: figs/figure_3.pdf Graphic file (type pdf)
-<use figs/figure_3.pdf>
-Package pdftex.def Info: figs/figure_3.pdf  used on input line 207.
+Overfull \hbox (19.31462pt too wide) in paragraph at lines 213--213
+[]\T1/cmr/bx/n/17.28 Outage Prob-a-bil-ity: Deriva-tion and Sim-u-la-tion Metho
+d 
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 223.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 223.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 229.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 229.
+
+
+
+[7] (./tables.tex)
+<figs/figure_2.pdf, id=260, 509.905pt x 416.55624pt>
+File: figs/figure_2.pdf Graphic file (type pdf)
+<use figs/figure_2.pdf>
+Package pdftex.def Info: figs/figure_2.pdf  used on input line 284.
 (pdftex.def)             Requested size: 386.96027pt x 316.13475pt.
 
 
-[7 <./figs/figure_2.pdf>]
-<figs/figure_4.pdf, id=311, 514.92375pt x 525.965pt>
+[8]
+
+[9]
+<figs/figure_3.pdf, id=277, 509.905pt x 416.55624pt>
+File: figs/figure_3.pdf Graphic file (type pdf)
+<use figs/figure_3.pdf>
+Package pdftex.def Info: figs/figure_3.pdf  used on input line 291.
+(pdftex.def)             Requested size: 386.96027pt x 316.13475pt.
+
+
+[10 <./figs/figure_2.pdf>]
+<figs/figure_4.pdf, id=344, 514.92375pt x 525.965pt>
 File: figs/figure_4.pdf Graphic file (type pdf)
 <use figs/figure_4.pdf>
-Package pdftex.def Info: figs/figure_4.pdf  used on input line 214.
+Package pdftex.def Info: figs/figure_4.pdf  used on input line 298.
 (pdftex.def)             Requested size: 386.96027pt x 395.2673pt.
 
 
-[8 <./figs/figure_3.pdf>]
+[11 <./figs/figure_3.pdf>]
 
-[9 <./figs/figure_4.pdf>]
-Overfull \hbox (0.7215pt too wide) in paragraph at lines 240--241
+[12 <./figs/figure_4.pdf>]
+
+[13{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
+c}]
+Overfull \hbox (0.7215pt too wide) in paragraph at lines 352--353
 []\T1/cmr/m/n/12 E. W. Weis-stein, ``Disk Point Pick-ing,'' Math-World. Avail-a
 ble: [][]$\T1/cmtt/m/n/12 https : / / mathworld .
  []
 
 
 
-[10]
-
-[11]
-
-[12]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 386.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 386.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 394.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 394.
-
-
-
-[13]
-
-[14{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
-c}] (./main.aux)
+[14] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 554C299BCC9C86AFCC88E1A85C3FF555;4883.
+(rerunfilecheck)             Checksum: 5F84E14783909A5F40E5657048913C4A;5450.
  ) 
 Here is how much of TeX's memory you used:
- 18079 strings out of 473190
- 340045 string characters out of 5715800
- 724570 words of memory out of 5000000
- 41027 multiletter control sequences out of 15000+600000
+ 18402 strings out of 473190
+ 345626 string characters out of 5715800
+ 725141 words of memory out of 5000000
+ 41351 multiletter control sequences out of 15000+600000
  578528 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,79p,548b,1046s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,694b,1039s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -709,10 +729,10 @@ ist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2025/texmf-dist/
 fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2025/texmf-dist/fo
 nts/type1/public/cm-super/sftt1200.pfb>
-Output written on main.pdf (14 pages, 467312 bytes).
+Output written on main.pdf (14 pages, 468179 bytes).
 PDF statistics:
- 637 PDF objects out of 1000 (max. 8388607)
- 557 compressed objects within 6 object streams
- 103 named destinations out of 1000 (max. 500000)
- 213 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 628 PDF objects out of 1000 (max. 8388607)
+ 548 compressed objects within 6 object streams
+ 98 named destinations out of 1000 (max. 500000)
+ 229 words of extra memory for PDF output out of 10000 (max. 10000000)
 
