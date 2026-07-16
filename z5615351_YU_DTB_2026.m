@@ -3,11 +3,7 @@
 %
 % Author: YU
 % zID: z5615351
-% Filename: z5615351_YU_DTB_2026.m
-%
-% This script implements Monte Carlo simulations for a BPSK system under
-% six wireless channel models and verifies BER and outage probability
-% against analytical expressions.
+
 
 clc;
 clear;
