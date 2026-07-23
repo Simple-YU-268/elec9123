@@ -34,17 +34,19 @@ for c = 1:num_cases
     subplot(1, 3, 1);
     bar([N_theory, N_sim']);
     title('Mean N');
-    xlabel('Run'); ylabel('N');
-    legend('Theory', '1e4', '1e5', '1e6', 'Location','best');
+    ylabel('N');
+    set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 
     subplot(1, 3, 2);
     bar([T_theory_min, T_sim']);
     title('Mean T (min)');
-    xlabel('Run'); ylabel('T (min)');
+    ylabel('T (min)');
+    set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 
     subplot(1, 3, 3);
     bar([P_block, P_block_sim']);
     title('Blocking probability');
-    xlabel('Run'); ylabel('P_{block}');
+    ylabel('P_{block}');
+    set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 end
 end

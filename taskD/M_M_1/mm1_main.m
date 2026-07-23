@@ -31,27 +31,21 @@ end
 figure('Name','M/M/1 Comparison');
 
 subplot(1,2,1);
-bar_data = [repmat(N_theory, num_runs, 1), N_sim];
-bar(bar_data);
+bar([N_theory, N_sim']);
 hold on;
 yline(N_theory, 'r--', 'LineWidth', 1.5);
 hold off;
 title('Mean number in system N');
-legend('Theory', 'Sim 1e4', 'Sim 1e5', 'Sim 1e6', 'Location','best');
-xlabel('Run');
 ylabel('N');
-set(gca, 'XTickLabel', {'N-theory','N-sim'});
+set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 
 subplot(1,2,2);
-bar_data = [repmat(T_theory_minutes, num_runs, 1), T_sim];
-bar(bar_data);
+bar([T_theory_minutes, T_sim']);
 hold on;
 yline(T_theory_minutes, 'r--', 'LineWidth', 1.5);
 hold off;
 title('Mean time in system T (minutes)');
-legend('Theory', 'Sim 1e4', 'Sim 1e5', 'Sim 1e6', 'Location','best');
-xlabel('Run');
 ylabel('T (min)');
-set(gca, 'XTickLabel', {'T-theory','T-sim'});
+set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 
 end

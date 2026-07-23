@@ -65,7 +65,7 @@ while num_events < target_events
             S = generate_service(dist_type, service_minutes, mu);
             dep_times(next_customer_id) = t + S;
             next_departure = dep_times(next_customer_id);
-            num_in_system = num_in_system + 1;
+            % queued customer stays in the system; count unchanged
         else
             server_busy = false;
             next_departure = inf;
@@ -76,7 +76,7 @@ end
 N_sim = N_integral / t;
 T = dep_times(1:num_served) - arr_times(1:num_served);
 warm_up = max(1, floor(0.1 * num_served));
-T_sim = mean(T(warm_up:num_served)) * 60;
+T_sim = mean(T(warm_up:num_served)); % simulation clock is already in minutes
 end
 
 function S = generate_service(dist_type, mean_minutes, mu)

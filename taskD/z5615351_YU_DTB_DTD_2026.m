@@ -3,14 +3,21 @@
 % Run the appropriate sub-model by uncommenting the relevant section.
 % Each sub-folder contains its own Main/Analysis/Simulation triplet.
 
+% Make the sub-model functions callable regardless of the current folder
+this_dir = fileparts(mfilename('fullpath'));
+addpath(fullfile(this_dir, 'M_M_1'), ...
+        fullfile(this_dir, 'M_M_1_K'), ...
+        fullfile(this_dir, 'M_G_1'), ...
+        fullfile(this_dir, 'M_M_m'));
+
 %% Level 2: M/M/1
-run('M_M_1/mm1_main.m');
+mm1_main();
 
 %% Level 3: M/M/1/K
-% run('M_M_1_K/mm1k_main.m');
+mm1k_main();
 
 %% Level 4: M/G/1
-% run('M_G_1/mg1_main.m');
+mg1_main();
 
 %% Level 5: Two-class M/M/m
-% run('M_M_m/mmm_main.m');
+mmm_main();

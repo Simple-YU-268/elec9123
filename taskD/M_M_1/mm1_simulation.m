@@ -84,7 +84,7 @@ while num_events < target_events
             queue(1) = [];
             dep_times(next_customer_id) = t + exprnd(1 / mu);
             next_departure = dep_times(next_customer_id);
-            num_in_system = num_in_system + 1; % new customer now in service
+            % queued customer stays in the system; count unchanged
         else
             server_busy = false;
             next_departure = inf;
@@ -99,5 +99,5 @@ N_sim = N_integral / t;
 valid_served = (1:num_served) + floor(0.1 * num_served);
 valid_served = valid_served(valid_served <= num_served);
 T = dep_times(1:num_served) - arr_times(1:num_served);
-T_sim = mean(T(valid_served)) * 60; % convert hours to minutes
+T_sim = mean(T(valid_served)); % simulation clock is already in minutes
 end

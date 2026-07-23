@@ -13,12 +13,12 @@ function [rho, N_theory, T_theory, P_block] = mm1k_analysis(lambda_hourly, servi
 mu = 60 / service_minutes;  % customers per hour
 rho = lambda_hourly / mu;
 
+% Steady-state probability of n customers in system
+n = 0:K;
 if rho == 1
     p0 = 1 / (K + 1);
     pn = p0 * ones(1, K + 1);
 else
-    % Steady-state probability of n customers in system
-    n = 0:K;
     pn_unnorm = rho.^n;
     p0 = 1 / sum(pn_unnorm);
     pn = p0 * pn_unnorm;

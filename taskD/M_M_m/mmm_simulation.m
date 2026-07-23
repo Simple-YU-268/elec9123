@@ -13,6 +13,7 @@ mu = 1 / service_minutes;     % per minute
 max_customers = 2 * target_events;
 arr_times = zeros(max_customers, 1);
 dep_times = zeros(max_customers, 1);
+served_ids = zeros(max_customers, 1); % customer ids in actual departure order
 
 % Event list: one departure time per server (inf if idle)
 next_departures = inf(m, 1);
@@ -71,6 +72,7 @@ while num_events < target_events
 
         cid = server_customer(dep_server);
         dep_times(cid) = t;
+        served_ids(num_served) = cid;
 
         if ~isempty(queue)
             % Start service for the next queued customer
@@ -79,7 +81,7 @@ while num_events < target_events
             server_customer(dep_server) = next_cid;
             dep_times(next_cid) = t + exprnd(1 / mu);
             next_departures(dep_server) = dep_times(next_cid);
-            num_in_system = num_in_system + 1; % customer moved from queue to service
+            % queued customer stays in the system; count unchanged
         else
             server_busy(dep_server) = false;
             server_customer(dep_server) = 0;
@@ -89,8 +91,10 @@ while num_events < target_events
 end
 
 N_sim = N_integral / t;
-T = dep_times(1:num_served) - arr_times(1:num_served);
+% With m servers departures are not in arrival order, so use the recorded
+% departure sequence (only genuinely served customers have valid times).
+T = dep_times(served_ids(1:num_served)) - arr_times(served_ids(1:num_served));
 warm_up = max(1, floor(0.1 * num_served));
-T_sim = mean(T(warm_up:num_served)) * 60;
+T_sim = mean(T(warm_up:num_served)); % simulation clock is already in minutes
 P_wait_sim = num_waited / last_customer;
 end

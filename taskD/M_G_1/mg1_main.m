@@ -31,12 +31,13 @@ for d = 1:num_dists
     subplot(1,2,1);
     bar([N_theory(d), N_sim']);
     title(sprintf('Mean N (%s)', dt));
-    xlabel('Run'); ylabel('N');
-    legend('Theory', '1e4', '1e5', '1e6', 'Location','best');
+    ylabel('N');
+    set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 
     subplot(1,2,2);
     bar([T_theory_min, T_sim']);
     title(sprintf('Mean T (min) (%s)', dt));
-    xlabel('Run'); ylabel('T (min)');
+    ylabel('T (min)');
+    set(gca, 'XTickLabel', {'Theory','1e4','1e5','1e6'});
 end
 end

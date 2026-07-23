@@ -76,7 +76,7 @@ while num_events < target_events
             queue(1) = [];
             dep_times(next_customer_id) = t + exprnd(1 / mu);
             next_departure = dep_times(next_customer_id);
-            num_in_system = num_in_system + 1;
+            % queued customer stays in the system; count unchanged
         else
             server_busy = false;
             next_departure = inf;
@@ -89,7 +89,7 @@ N_sim = N_integral / t;
 % Warm-up exclusion for sojourn time statistics
 T = dep_times(1:num_served) - arr_times(1:num_served);
 warm_up = max(1, floor(0.1 * num_served));
-T_sim = mean(T(warm_up:num_served)) * 60;
+T_sim = mean(T(warm_up:num_served)); % simulation clock is already in minutes
 
 % Blocking probability: total arrivals attempted = last_customer + blocked_count
 % Arrival attempts include all arrival events (accepted + blocked)
